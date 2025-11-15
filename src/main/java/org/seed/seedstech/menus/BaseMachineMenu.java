@@ -12,6 +12,7 @@ import net.minecraft.world.level.Level;
 import org.seed.seedstech.blockentities.BaseMachineEntity;
 import org.seed.seedstech.blocks.BaseMachineDefinition;
 import org.seed.seedstech.screens.BaseMachineScreen;
+import org.seed.seedstech.screens.FluidSlot;
 
 import java.util.Optional;
 
@@ -116,7 +117,7 @@ public class BaseMachineMenu extends AbstractContainerMenu
 		for (int i = 0; i < container.getContainerSize(); ++i)
 		{
 			var rect = getSlotRectangle(i);
-			addSlot(new Slot(container, i, rect.x + SLOT_BORDER_WIDTH, rect.y + SLOT_BORDER_HEIGHT));
+			addSlot(new FluidSlot(container, i, rect.x + SLOT_BORDER_WIDTH, rect.y + SLOT_BORDER_HEIGHT));
 		}
 	}
 
@@ -146,53 +147,10 @@ public class BaseMachineMenu extends AbstractContainerMenu
 	@Override
 	public ItemStack quickMoveStack(Player player, int slotIndex)
 	{
-		/*ItemStack movedStack = ItemStack.EMPTY;
-		Slot sourceSlot = slots.get(slotIndex);
 
-		if (sourceSlot.hasItem()) {
-			ItemStack sourceStack = sourceSlot.getItem();
-			movedStack = sourceStack.copy();
-
-			// 逻辑：输出槽 → 玩家背包；玩家物品 → 对应输入槽；其他 → 反向转移
-			if (slotIndex == OUTPUT_SLOT) {
-				// 输出槽物品转移到玩家背包
-				if (!this.moveItemStackTo(sourceStack, PLAYER_INV_SLOT_START, TOTAL_SLOTS, true)) {
-					return ItemStack.EMPTY;
-				}
-			} else if (slotIndex >= PLAYER_INV_SLOT_START) {
-				// 玩家物品转移到输入槽（矿石→槽0，插件→槽1）
-				if (sourceStack.is(ModTags.Items.ORES) && !this.moveItemStackTo(sourceStack, INPUT_ORE_SLOT, INPUT_ORE_SLOT + 1, false)) {
-					return ItemStack.EMPTY;
-				} else if (sourceStack.is(ModItems.PLUGIN.get()) && !this.moveItemStackTo(sourceStack, INPUT_PLUGIN_SLOT, INPUT_PLUGIN_SLOT + 1, false)) {
-					return ItemStack.EMPTY;
-				} else if (slotIndex < PLAYER_HOTBAR_SLOT_START) {
-					// 背包物品→快捷栏
-					if (!this.moveItemStackTo(sourceStack, PLAYER_HOTBAR_SLOT_START, TOTAL_SLOTS, false)) {
-						return ItemStack.EMPTY;
-					}
-				} else if (!this.moveItemStackTo(sourceStack, PLAYER_INV_SLOT_START, PLAYER_HOTBAR_SLOT_START, false)) {
-					// 快捷栏物品→背包
-					return ItemStack.EMPTY;
-				}
-			} else if (!this.moveItemStackTo(sourceStack, PLAYER_INV_SLOT_START, TOTAL_SLOTS, false)) {
-				// 输入槽物品→玩家背包
-				return ItemStack.EMPTY;
-			}
-
-			if (sourceStack.isEmpty()) {
-				sourceSlot.set(ItemStack.EMPTY);
-			} else {
-				sourceSlot.setChanged();
-			}
-		}
-
-		return movedStack;*/
 		return ItemStack.EMPTY;
 	}
 
-	// ------------------------------
-	// 4. 权限校验（stillValid）
-	// ------------------------------
 	@Override
 	public boolean stillValid(Player player)
 	{
