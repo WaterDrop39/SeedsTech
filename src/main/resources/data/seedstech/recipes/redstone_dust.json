@@ -1,0 +1,17 @@
+{
+  "type": "seedstech:macerator",
+  "input": [
+    {
+      "item": "minecraft:redstone_block",
+      "count": 1
+    }
+  ],
+  "output": [
+    {
+      "item": "minecraft:redstone",
+      "count": 9
+    }
+  ],
+  "time": 20,
+  "energy": 0
+}
