@@ -189,12 +189,6 @@ public class BaseMachineScreen extends AbstractContainerScreen<BaseMachineMenu>
 		poseStack.popPose();
 	}
 
-/*	@Override
-	protected void renderSlot(GuiGraphics pGuiGraphics, Slot pSlot) {
-		super.renderSlot(pGuiGraphics, pSlot);
-		IClientFluidTypeExtensions
-	}*/
-
 	/**
 	 * 绘制灰色容器框, 必须在Pose转换后调用
 	 *

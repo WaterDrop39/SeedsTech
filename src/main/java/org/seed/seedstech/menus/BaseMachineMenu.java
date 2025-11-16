@@ -1,6 +1,5 @@
 package org.seed.seedstech.menus;
 
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
@@ -8,7 +7,6 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import org.seed.seedstech.blockentities.BaseMachineEntity;
 import org.seed.seedstech.blocks.BaseMachineDefinition;
 import org.seed.seedstech.screens.BaseMachineScreen;
@@ -117,7 +115,7 @@ public class BaseMachineMenu extends AbstractContainerMenu
 		for (int i = 0; i < container.getContainerSize(); ++i)
 		{
 			var rect = getSlotRectangle(i);
-			addSlot(new FluidSlot(container, i, rect.x + SLOT_BORDER_WIDTH, rect.y + SLOT_BORDER_HEIGHT));
+			addSlot(new Slot(container, i, rect.x + SLOT_BORDER_WIDTH, rect.y + SLOT_BORDER_HEIGHT));
 		}
 	}
 
@@ -293,5 +291,17 @@ public class BaseMachineMenu extends AbstractContainerMenu
 				SLOT_WITH_BORDER_WIDTH,
 				SLOT_WITH_BORDER_HEIGHT
 		);
+	}
+
+	/**
+	 * Returns {@code true} if the player can "drag-spilt" items into this slot. Returns {@code true} by default. Called
+	 * to check if the slot can be added to a list of Slots to split the held ItemStack across.
+	 *
+	 * @param pSlot
+	 */
+	@Override
+	public boolean canDragTo(Slot pSlot)
+	{
+		return !(pSlot instanceof FluidSlot);
 	}
 }

@@ -131,6 +131,22 @@ public class FluidStackHandler implements IFluidHandler, INBTSerializable<Compou
 	}
 
 	/**
+	 * 向指定tank填充的流体
+	 *
+	 * @param tank   指定tank
+	 * @param fluid 流体
+	 * @param action 是否为模拟
+	 * @return 剩余的未能填充的流体量
+	 */
+	public int fill(int tank, FluidStack fluid, FluidAction action)
+	{
+		validateTankIndex(tank);
+		if (fluids[tank].isFluidEqual(fluid))
+			return fill(tank, fluid.getAmount(), action);
+		return fluid.getAmount();
+	}
+
+	/**
 	 * Fills fluid into internal tanks, distribution is left entirely to the IFluidHandler.
 	 *
 	 * @param resource FluidStack representing the Fluid and maximum amount of fluid to be filled.
@@ -330,5 +346,11 @@ public class FluidStackHandler implements IFluidHandler, INBTSerializable<Compou
 			if (!fluid.isEmpty())
 				return false;
 		return true;
+	}
+
+	public String getFluidAmountString(int tank)
+	{
+		validateTankIndex(tank);
+		return Lib.getFluidAmountString(getFluidInTank(tank).getAmount());
 	}
 }
